@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mintodo_flutter/models/formula_ingredient_database.dart';
 // import 'package:mintodo_flutter/counter_model.dart';
 import 'package:mintodo_flutter/models/note_database.dart';
 import 'package:mintodo_flutter/pages/notes_page.dart';
@@ -9,6 +10,7 @@ void main() async{
   // initialize note db 
   WidgetsFlutterBinding.ensureInitialized();
   await NoteDatabase.initialize();
+  await FormulaIngredientDatabase.initialize();
 
   runApp(
     // ChangeNotifierProvider(
@@ -21,7 +23,9 @@ void main() async{
         // NNote provider
         ChangeNotifierProvider(create: (context) => NoteDatabase()),
         // Theme provider 
-        ChangeNotifierProvider(create: (context) => ThemeProvider())
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        // formula provider
+        ChangeNotifierProvider(create: (context) => FormulaIngredientDatabase()),
       ],
       child: const MainApp()
       )
