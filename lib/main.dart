@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 void main() async{
   // initialize note db 
   WidgetsFlutterBinding.ensureInitialized();
-  await NoteDatabase.initialize();
-  await FormulaIngredientDatabase.initialize();
+  await MultiDatabase.initialize();
+  // await FormulaIngredientDatabase.initialize();
 
   runApp(
     // ChangeNotifierProvider(
@@ -20,12 +20,12 @@ void main() async{
     // ),
     MultiProvider(
       providers: [
-        // NNote provider
-        ChangeNotifierProvider(create: (context) => NoteDatabase()),
+        // multi = note and formula ingredient provider
+        ChangeNotifierProvider(create: (context) => MultiDatabase()),
         // Theme provider 
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         // formula provider
-        ChangeNotifierProvider(create: (context) => FormulaIngredientDatabase()),
+        // ChangeNotifierProvider(create: (context) => FormulaIngredientDatabase()),
       ],
       child: const MainApp()
       )

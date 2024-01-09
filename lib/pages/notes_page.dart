@@ -33,7 +33,7 @@ class _NotesPageState extends State<NotesPage>{
         actions: [
           MaterialButton(onPressed: (){
             // add to db
-            context.read<NoteDatabase>().addNote(textController.text);
+            context.read<MultiDatabase>().addNote(textController.text);
             // clear the controller 
             textController.clear();
             // pop dialog box
@@ -45,7 +45,7 @@ class _NotesPageState extends State<NotesPage>{
   }
   // READ NOTES
   void readNotes(){
-    context.read<NoteDatabase>().fetchNotes();
+    context.read<MultiDatabase>().fetchNotes();
   }
   // update a note 
   void updateNote(Note note){
@@ -60,7 +60,7 @@ class _NotesPageState extends State<NotesPage>{
           onPressed: (){
           // update note in db
           context
-            .read<NoteDatabase>()
+            .read<MultiDatabase>()
             .updateNote(note.id, textController.text);
 
           // clear controller 
@@ -77,14 +77,14 @@ class _NotesPageState extends State<NotesPage>{
   }
   // delete a note
   void deleteNote(int id){
-    context.read<NoteDatabase>().deleteNote(id);
+    context.read<MultiDatabase>().deleteNote(id);
   }
   @override
   Widget build(BuildContext context){
 
     //  note database 
 
-    final noteDatabase = context.watch<NoteDatabase>();
+    final noteDatabase = context.watch<MultiDatabase>();
 
     List<Note> currentNotes = noteDatabase.currentNotes;
     return Scaffold(
